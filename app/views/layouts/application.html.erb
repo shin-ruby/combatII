@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>欢迎光临，这里是格斗之家</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<div class="header">
+  <a href="index.html"><%= image_tag("logo.png") %></a>
+  <ul class="nav">
+    <li><%= link_to "精品讨论", home_index_path %></li>
+  	<li><%= link_to "中国功夫", posts_path %></li>
+    <li><a href="#">日本武道</a></li>
+    <li><a href="#">韩国跆拳道</a></li>
+    <li><a href="#">泰拳</a></li>
+    <li><a href="#">拳击</a></li>
+    <li><a href="#">其他</a></li>
+  </ul>
+  <ul class="navleft">
+    <% if user_signed_in? %>
+      <strong><%= current_user.email %></strong>.
+      <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+      <li><%= link_to "注销", destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "注册", new_user_registration_path %></li>
+      <li><%= link_to "登录", new_user_session_path %></li>
+    <% end %>
+  </ul>
+</div><br class="clear" />
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div id="main">
+    <%= yield %>
+</div>
+<div id="footer">
+    沪ICP备05085548
+</div>
+</body>
+</html>
